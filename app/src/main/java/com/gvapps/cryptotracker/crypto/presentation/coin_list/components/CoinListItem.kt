@@ -33,97 +33,98 @@ import com.plcoding.cryptotracker.ui.theme.CryptoTrackerTheme
 
 @Composable
 fun CoinListItem(
-    coinUi: CoinUi,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+	coinUi: CoinUi,
+	onClick: () -> Unit,
+	modifier: Modifier = Modifier,
 ) {
-    Row(
-        modifier = modifier
-            .clickable(onClick = onClick)
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        Icon(
-            imageVector = ImageVector.vectorResource(coinUi.iconRes),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(65.dp)
-        )
-        Column(
-            modifier = Modifier.weight(1f)
-        ) {
-            Text(
-                text = coinUi.symbol,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = SemiBold
-                ),
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            Text(
-                text = coinUi.name,
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    fontWeight = Light
-                ),
-                color = MaterialTheme.colorScheme.onBackground
-            )
-        }
-        Column(
-            horizontalAlignment = Alignment.End
-        ) {
-            Text(
-                "$ ${coinUi.priceUsd.formatted}",
-                color = MaterialTheme.colorScheme.onBackground,
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    fontWeight = SemiBold
-                ),
-            )
-            Row(
-                modifier = Modifier
-                    .padding(top = 10.dp)
-                    .clip(RoundedCornerShape(13.dp))
-                    .background(
-                        if (coinUi.changePercent24Hr.value > 0) greenBackground
-                        else MaterialTheme.colorScheme.errorContainer
-                    ),
-                horizontalArrangement = Arrangement.End
-            ) {
-                if (coinUi.changePercent24Hr.value > 0) {
-                    Icon(imageVector = Icons.Default.KeyboardArrowUp, contentDescription = null)
-                    Text(
-                        text = "${coinUi.changePercent24Hr.formatted}% "
-                    )
-                } else {
-                    Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = null)
-                    Text(
-                        text = "${coinUi.changePercent24Hr.formatted}% "
-                    )
-                }
-            }
-        }
-    }
+	Row(
+		modifier = modifier
+			.background(MaterialTheme.colorScheme.background)
+			.clickable(onClick = onClick)
+			.padding(16.dp),
+		verticalAlignment = Alignment.CenterVertically,
+		horizontalArrangement = Arrangement.spacedBy(16.dp)
+	) {
+		Icon(
+			imageVector = ImageVector.vectorResource(coinUi.iconRes),
+			contentDescription = null,
+			tint = MaterialTheme.colorScheme.primary,
+			modifier = Modifier.size(65.dp)
+		)
+		Column(
+			modifier = Modifier.weight(1f)
+		) {
+			Text(
+				text = coinUi.symbol,
+				style = MaterialTheme.typography.titleMedium.copy(
+					fontWeight = SemiBold
+				),
+				color = MaterialTheme.colorScheme.onBackground
+			)
+			Text(
+				text = coinUi.name,
+				style = MaterialTheme.typography.bodyLarge.copy(
+					fontWeight = Light
+				),
+				color = MaterialTheme.colorScheme.onBackground
+			)
+		}
+		Column(
+			horizontalAlignment = Alignment.End
+		) {
+			Text(
+				"$ ${coinUi.priceUsd.formatted}",
+				color = MaterialTheme.colorScheme.onBackground,
+				style = MaterialTheme.typography.bodyLarge.copy(
+					fontWeight = SemiBold
+				),
+			)
+			Row(
+				modifier = Modifier
+					.padding(top = 10.dp)
+					.clip(RoundedCornerShape(13.dp))
+					.background(
+						if (coinUi.changePercent24Hr.value > 0) greenBackground
+						else MaterialTheme.colorScheme.errorContainer
+					),
+				horizontalArrangement = Arrangement.End
+			) {
+				if (coinUi.changePercent24Hr.value > 0) {
+					Icon(imageVector = Icons.Default.KeyboardArrowUp, contentDescription = null)
+					Text(
+						text = "${coinUi.changePercent24Hr.formatted}% "
+					)
+				} else {
+					Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = null)
+					Text(
+						text = "${coinUi.changePercent24Hr.formatted}% "
+					)
+				}
+			}
+		}
+	}
 }
 
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun CoinListItemPreview() {
-    CryptoTrackerTheme {
-        CoinListItem(
-            coinUi = previewCoin,
-            onClick = { },
-            modifier = Modifier.background(MaterialTheme.colorScheme.background)
-        )
-    }
+	CryptoTrackerTheme {
+		CoinListItem(
+			coinUi = previewCoin,
+			onClick = { },
+			modifier = Modifier.background(MaterialTheme.colorScheme.background)
+		)
+	}
 }
 
 internal val previewCoin = Coin(
-    id = "bitcoin",
-    rank = 1,
-    symbol = "BTC",
-    name = "Bitcoin",
-    marketCapUsd = 119150835874.4699281625807300,
-    priceUsd = 6929.8217756835584756,
-    changePercent24Hr = -10.8101417214350335
+	id = "bitcoin",
+	rank = 1,
+	symbol = "BTC",
+	name = "Bitcoin",
+	marketCapUsd = 119150835874.4699281625807300,
+	priceUsd = 6929.8217756835584756,
+	changePercent24Hr = -10.8101417214350335
 //    changePercent24Hr = 20.8101417214350335
 ).toCoinUi()
