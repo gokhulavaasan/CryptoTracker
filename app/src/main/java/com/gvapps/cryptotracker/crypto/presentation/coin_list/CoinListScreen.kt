@@ -1,5 +1,6 @@
 package com.gvapps.cryptotracker.crypto.presentation.coin_list
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,7 +31,7 @@ fun CoinListScreen(
 ) {
 	if (state.isLoading) {
 		Box(
-			modifier = modifier
+			modifier = Modifier
 				.fillMaxSize(),
 			contentAlignment = Alignment.Center
 		) {
@@ -38,7 +39,7 @@ fun CoinListScreen(
 		}
 	} else {
 		LazyColumn(
-			modifier = modifier
+			modifier = Modifier
 				.fillMaxSize()
 				.background(MaterialTheme.colorScheme.background),
 			verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -55,7 +56,7 @@ fun CoinListScreen(
 	}
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_NO)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun CoinListScreenPreview() {

@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Light
@@ -47,9 +48,9 @@ fun CoinListItem(
 	) {
 		Icon(
 			imageVector = ImageVector.vectorResource(coinUi.iconRes),
-			contentDescription = null,
+			contentDescription = coinUi.name,
 			tint = MaterialTheme.colorScheme.primary,
-			modifier = Modifier.size(65.dp)
+			modifier = Modifier.size(85.dp)
 		)
 		Column(
 			modifier = Modifier.weight(1f)
@@ -89,15 +90,26 @@ fun CoinListItem(
 					),
 				horizontalArrangement = Arrangement.End
 			) {
+
 				if (coinUi.changePercent24Hr.value > 0) {
-					Icon(imageVector = Icons.Default.KeyboardArrowUp, contentDescription = null)
+					Icon(
+						imageVector = Icons.Default.KeyboardArrowUp,
+						contentDescription = null,
+						tint = Green
+					)
 					Text(
-						text = "${coinUi.changePercent24Hr.formatted}% "
+						color = Green,
+						text = "${coinUi.changePercent24Hr.formatted} % "
 					)
 				} else {
-					Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = null)
+					Icon(
+						imageVector = Icons.Default.KeyboardArrowDown,
+						contentDescription = null,
+						tint = MaterialTheme.colorScheme.onErrorContainer
+					)
 					Text(
-						text = "${coinUi.changePercent24Hr.formatted}% "
+						text = "${coinUi.changePercent24Hr.formatted} % ",
+						color = MaterialTheme.colorScheme.onErrorContainer,
 					)
 				}
 			}
@@ -125,6 +137,6 @@ internal val previewCoin = Coin(
 	name = "Bitcoin",
 	marketCapUsd = 119150835874.4699281625807300,
 	priceUsd = 6929.8217756835584756,
-	changePercent24Hr = -10.8101417214350335
+	changePercent24Hr = 10.8101417214350335
 //    changePercent24Hr = 20.8101417214350335
 ).toCoinUi()
