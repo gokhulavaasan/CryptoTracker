@@ -32,6 +32,7 @@ import com.gvapps.cryptotracker.crypto.presentation.models.toCoinUi
 import com.gvapps.cryptotracker.ui.theme.greenBackground
 import com.plcoding.cryptotracker.ui.theme.CryptoTrackerTheme
 
+
 @Composable
 fun CoinListItem(
 	coinUi: CoinUi,
@@ -136,7 +137,7 @@ internal val previewCoin = Coin(
 	symbol = "BTC",
 	name = "Bitcoin",
 	marketCapUsd = 119150835874.4699281625807300,
-	priceUsd = 6929.8217756835584756,
-	changePercent24Hr = 10.8101417214350335
+	priceUsd = 69291.8217756835584756,
+	changePercent24Hr = -10.8101417214350335
 //    changePercent24Hr = 20.8101417214350335
 ).toCoinUi()
